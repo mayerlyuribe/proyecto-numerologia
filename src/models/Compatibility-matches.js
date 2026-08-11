@@ -25,4 +25,4 @@ const CompatibilityMatchSchema = new Schema({
     }
 });
 
-export default model ('Compatibility-matches', CompatibilityMatchSchema);
+export default model ('Compatibility_matches', CompatibilityMatchSchema);

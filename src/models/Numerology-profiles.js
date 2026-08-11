@@ -21,4 +21,4 @@ const NumerologyProfileSchema = new Schema({
     }
 });
 
-export default model('Numerology-profile', NumerologyProfileSchema);
+export default model('Numerology_profile', NumerologyProfileSchema);
