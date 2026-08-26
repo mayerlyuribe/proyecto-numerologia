@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
-import { verificarCompatibilidad } from '../controllers/compatibility-controller.js';
-import { validarJWT } from '../middlewares/validar-jwt.js';
-import { validarCampos } from '../middlewares/validar-campos.js';
+import { verificarCompatibilidad } from '../controllers/compatibility-matchesController.js';
+import { validarJWT } from '../middleware/validar-jwt.js';
+import { validarCampos } from '../middleware/validar-campos.js';
 
 const router = Router();
 

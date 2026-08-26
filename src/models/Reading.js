@@ -19,10 +19,10 @@ const ReadingSchema = new Schema({
         default: Date.now
     },
     usuario:{
-        type: Schema.Types.objectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true 
     }
 })
 
-export default model('Reading ', ReadingSchema);
+export default model('Reading', ReadingSchema);

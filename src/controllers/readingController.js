@@ -2,13 +2,15 @@ import Reading from "../models/Reading.js";
 import NumerologyProfile from "../models/Numerology-profiles.js";
 import { generarInterpretacion } from "../services/gemini.service.js";
 
-export const generarLectura =async (req, res) => {
+export const generarLectura = async (req, res) => {
+    const { tipoLectura } = req.body;
+
     try{
         const perfil = await NumerologyProfile.findOne({ usuario: req.usuario._id });
 
         if(!perfil){
-            return res.satatus(404).json({
-                msg:'primero debes cacular tu perfil numerologico'
+            return res.status(404).json({
+                msg:'primero debes calcular tu perfil numerologico'
             });
         }
 

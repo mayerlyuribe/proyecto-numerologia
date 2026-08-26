@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { calcularPerfil, obtenerPerfil } from '../controllers/numerology-profilesController.js';
-import { validarJWT } from '../middlewares/validar-jwt.js';
+import { calcularPerfil, obtenerPerfil } from '../controllers/numerology-ProfilesController.js';
+import { validarJWT } from '../middleware/validar-jwt.js';
 
 const router = Router();
 
