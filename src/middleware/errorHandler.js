@@ -5,6 +5,7 @@ export const rutaNoEncontrada = (req, res, next) => {
 };
 
 export const manejarErrores = (err, req, res, next) => {
+    console.error(err);
     res.status(err.status || 500).json({
         msg: 'hable con el administrador',
     });

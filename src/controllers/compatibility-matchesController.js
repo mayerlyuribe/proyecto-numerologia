@@ -1,6 +1,6 @@
 import Compatibility_matches from '../models/Compatibility-matches.js';
 import Numerology_profile from '../models/Numerology-profiles.js';
-import { CalcularPuntajeCompatibilidad } from '../services/numerology.service.js';
+import { calcularPuntajeCompatibilidad } from '../services/numerology.service.js';
 import { generarInterpretacion } from '../services/gemini.service.js';
 
 export const verificarCompatibilidad = async (req, res) => {
@@ -8,7 +8,7 @@ export const verificarCompatibilidad = async (req, res) => {
 
     try {
         const perfilPropio = await Numerology_profile.findOne({ usuario:req.usuario._id});
-        const perfilOtro = await numerology_profile.findOne({ usuario: otroUsuarioId });
+        const perfilOtro = await Numerology_profile.findOne({ usuario: otroUsuarioId });
 
         if (!perfilPropio || !perfilOtro) {
             return res.status(404).json({ msg: 'Ambos usuarios deben tener su perfil numerologico calculado' });

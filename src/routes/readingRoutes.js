@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
 import { generarLectura, obtenerHistorial } from '../controllers/readingController.js';
-import { validarJWT } from '../middlewares/validar-jwt.js';
-import { validarCampos } from '../middlewares/validar-campos.js';
+import { validarJWT } from '../middleware/validar-jwt.js';
+import { validarCampos } from '../middleware/validar-campos.js';
 
 const router = Router();
 

@@ -3,10 +3,10 @@ import User from '../models/User.js';
 import { generarJWT } from '../middleware/validar-jwt.js';
 
 export const register = async (req, res) => {
-    const {nombreCompleto, email, password, fechaNacimiento} = req.body;
+    const { nombreCompleto, email, password, fechaNacimiento } = req.body;
 
     try {
-        const user = new User ({nombreCompleto, email, fechaNacimiento });
+        const user = new User({ nombreCompleto, email, fechaNacimiento });
 
         const salt = bcrypt.genSaltSync();
         user.password = bcrypt.hashSync(password, salt);
@@ -18,11 +18,12 @@ export const register = async (req, res) => {
                 id: user._id,
                 nombreCompleto: user.nombreCompleto,
                 email: user.email,
-                fechaNacimiento:user.fechaNacimiento
+                fechaNacimiento: user.fechaNacimiento
             }
         });
 
-    }catch (error){
+    }catch (error) {
+        console.log(error);
         res.status(500).json({
             msg: 'hable con el WebMaster bro'
         });
@@ -30,22 +31,22 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-    const {email, password} = req.body;
+    const { email, password } = req.body;
 
     try {
         const user = await User.findOne({ email });
 
-        if (!user){
+        if (!user) {
             return res.status(401).json({
-                msg:'Email / password no son correctos'
+                msg: 'Email / password no son correctos'
             });
         }
 
         const validPassword = bcrypt.compareSync(password, user.password);
-        
+
         if (!validPassword) {
-            return res.status(401).json ({
-                msg:'Email / password no son correctos'
+            return res.status(401).json({
+                msg: 'Email / password no son correctos'
             });
         }
 
@@ -60,9 +61,10 @@ export const login = async (req, res) => {
             token
         });
     } catch (error) {
+        console.log(error);
         res.status(500).json({
             msg: 'hable con el WebMaster bro'
         });
     }
-    
+
 }
