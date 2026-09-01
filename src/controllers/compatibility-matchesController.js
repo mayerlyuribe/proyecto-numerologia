@@ -21,7 +21,7 @@ export const verificarCompatibilidad = async (req, res) => {
         persona 1: camino de vida ${perfilPropio.numeroVida}, expresion ${perfilPropio.numeroExpresion}, alma ${perfilPropio.numeroAlma}
         persona 2: camino de vida ${perfilOtro.numeroVida}, expresion ${perfilOtro.numeroExpresion}, alma ${perfilOtro.numeroAlma}
         
-        el puntaje de compatibilidad calculado es ${puntaje}/100. Ofrece una interpretacion natural sobre esta relación.`;
+        el puntaje de compatibilidad calculado es ${puntaje}/100. Ofrece una interpretacion natural, consisa y directa sobre esta relación, hazla de la manera más breve posible.`;
 
         const interpretacion = await generarInterpretacion(prompt);
 

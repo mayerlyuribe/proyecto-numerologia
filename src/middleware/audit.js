@@ -15,4 +15,4 @@ export const registrarAuditoria = (req, res, next) => {
     });
 
     next();
-};
+}; 

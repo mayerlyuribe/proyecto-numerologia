@@ -21,7 +21,7 @@ persona con los siguientes numeros centrales:
 - Numero de Expresion: ${perfil.numeroExpresion}
 - Numero del Alma: ${perfil.numeroAlma}
 
-Ofrece una interpretacion natural, clara y personalizada.
+Ofrece una interpretacion natural, clara, personalizada y breve.
 `;
         const respuesta = await generarInterpretacion(prompt);
 
