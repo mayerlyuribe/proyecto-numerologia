@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Numerología · Tu mapa numérico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <span class="brand">Numerología</span>
+    <div class="topbar-user" id="topbarUser" hidden>
+      <button type="button" class="user-id" id="userId" title="Clic para copiar tu ID completo"></button>
+      <span id="userName"></span>
+      <button id="btnLogout" class="link-btn">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== CONFIGURACIÓN DE API ===== -->
+    <section class="api-config">
+      <label for="apiBase">URL del backend</label>
+      <input type="text" id="apiBase" value="http://localhost:3000/api/v1" spellcheck="false">
+    </section>
+
+    <!-- ===== AUTENTICACIÓN ===== -->
+    <section id="authSection" class="auth-section">
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Entrar</button>
+        <button class="auth-tab" data-tab="register">Crear cuenta</button>
+      </div>
+
+      <form id="loginForm" class="auth-form">
+        <h1>Bienvenido de vuelta</h1>
+        <p class="sub">Entra para ver tu mapa numérico.</p>
+        <label>Email
+          <input type="email" name="email" required>
+        </label>
+        <label>Contraseña
+          <input type="password" name="password" required>
+        </label>
+        <button type="submit">Entrar</button>
+        <p class="form-msg" id="loginMsg"></p>
+      </form>
+
+      <form id="registerForm" class="auth-form" hidden>
+        <h1>Crea tu cuenta</h1>
+        <p class="sub">Necesitamos tu nombre completo y fecha de nacimiento para calcular tus números.</p>
+        <label>Nombre completo
+          <input type="text" name="nombreCompleto" required>
+        </label>
+        <label>Email
+          <input type="email" name="email" required>
+        </label>
+        <label>Contraseña
+          <input type="password" name="password" required minlength="8">
+          <span class="hint">Mínimo 8 caracteres, una mayúscula y un número</span>
+        </label>
+        <label>Fecha de nacimiento
+          <input type="date" name="fechaNacimiento" required>
+        </label>
+        <button type="submit">Crear cuenta</button>
+        <p class="form-msg" id="registerMsg"></p>
+      </form>
+
+    </section>
+
+    <!-- ===== PANEL PRINCIPAL (autenticado) ===== -->
+    <section id="dashboard" class="dashboard" hidden>
+
+      <!-- Perfil numerológico -->
+      <article class="card profile-card">
+        <div class="card-head">
+          <h2>Tu perfil numerológico</h2>
+          <button id="btnCalcularPerfil" class="ghost-btn">Calcular / recalcular</button>
+        </div>
+        <div id="profileEmpty" class="empty-state">
+          Aún no tienes un perfil calculado. Presiona «Calcular» para generarlo a partir de tu nombre y fecha de nacimiento.
+        </div>
+        <div id="profileNumbers" class="numbers-grid" hidden>
+          <div class="number-block">
+            <span class="number-value" id="numVida">–</span>
+            <span class="number-label">Camino de vida</span>
+          </div>
+          <div class="number-block">
+            <span class="number-value" id="numExpresion">–</span>
+            <span class="number-label">Expresión</span>
+          </div>
+          <div class="number-block">
+            <span class="number-value" id="numAlma">–</span>
+            <span class="number-label">Alma</span>
+          </div>
+        </div>
+        <p class="form-msg" id="profileMsg"></p>
+      </article>
+
+      <!-- Generar lectura -->
+      <article class="card">
+        <div class="card-head">
+          <h2>Pide una lectura</h2>
+        </div>
+        <form id="readingForm" class="inline-form">
+          <label>Tipo de lectura
+            <select name="tipoLectura">
+              <option value="diaria">Diaria</option>
+              <option value="general">General</option>
+              <option value="anual">Anual</option>
+            </select>
+          </label>
+          <button type="submit">Generar lectura</button>
+        </form>
+        <p class="form-msg" id="readingMsg"></p>
+        <div id="readingResult" class="reading-result" hidden></div>
+      </article>
+
+      <!-- Historial de lecturas -->
+      <article class="card">
+        <div class="card-head">
+          <h2>Historial de lecturas</h2>
+          <button id="btnHistorial" class="ghost-btn">Ver historial</button>
+        </div>
+        <ul id="historyList" class="history-list" hidden></ul>
+        <p class="empty-state" id="historyEmpty" hidden>Todavía no has generado ninguna lectura.</p>
+      </article>
+
+      <!-- Compatibilidad -->
+      <article class="card">
+        <div class="card-head">
+          <h2>Verificar compatibilidad</h2>
+        </div>
+        <form id="compatForm" class="inline-form">
+          <label>ID del otro usuario
+            <input type="text" name="otroUsuarioId" placeholder="ID de Mongo del otro perfil" required>
+          </label>
+          <button type="submit">Comparar</button>
+        </form>
+        <p class="form-msg" id="compatMsg"></p>
+        <div id="compatResult" class="reading-result" hidden></div>
+      </article>
+
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
