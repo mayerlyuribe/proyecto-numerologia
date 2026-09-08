@@ -17,14 +17,17 @@ connectDB();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
+
+
 app.use(registrarAuditoria)
+
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/numerology", numerologyRoutes);
 app.use("/api/v1/readings", readingRoutes);
 app.use("/api/v1/compatibility", compatibilityRoutes);
 
-app.use(express.static("public"));
 app.use(rutaNoEncontrada);
 app.use(manejarErrores);
 
